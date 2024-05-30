@@ -33,6 +33,21 @@
             font-size: 20px;
             cursor: pointer;
         }
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            user-select: none;
+        }
+        #prev-btn {
+            left: 10px;
+        }
+        #next-btn {
+            right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -54,26 +69,30 @@
         <div class="gallery-container">
             <img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting1.png" alt="Portfolio Image 1" onclick="openLightbox(this.src)">
             <img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting2.png" alt="Portfolio Image 2" onclick="openLightbox(this.src)">
-			<img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting3.png" alt="Portfolio Image 3" onclick="openLightbox(this.src)">
+            <img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting3.png" alt="Portfolio Image 3" onclick="openLightbox(this.src)">
             <img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting4.png" alt="Portfolio Image 4" onclick="openLightbox(this.src)">
-			<img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting5.png" alt="Portfolio Image 5" onclick="openLightbox(this.src)">
+            <img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting5.png" alt="Portfolio Image 5" onclick="openLightbox(this.src)">
             <img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting6.png" alt="Portfolio Image 6" onclick="openLightbox(this.src)">
-			<img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting7.png" alt="Portfolio Image 7" onclick="openLightbox(this.src)">
+            <img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting7.png" alt="Portfolio Image 7" onclick="openLightbox(this.src)">
             <img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting8.png" alt="Portfolio Image 8" onclick="openLightbox(this.src)">
-			<img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting9.png" alt="Portfolio Image 9" onclick="openLightbox(this.src)">
+            <img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting9.png" alt="Portfolio Image 9" onclick="openLightbox(this.src)">
             <img src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting10.png" alt="Portfolio Image 10" onclick="openLightbox(this.src)">
         </div>
         
         <div id="lightbox-container">
             <span id="close-btn" onclick="closeLightbox()">&times;</span>
+            <span class="nav-arrow" id="prev-btn" onclick="navigateLightbox(-1)">&#10094;</span>
             <img id="lightbox-img">
+            <span class="nav-arrow" id="next-btn" onclick="navigateLightbox(1)">&#10095;</span>
         </div>
-        
     </section>
 
     <script>
-        
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.gallery-container img');
+
         function openLightbox(imgSrc) {
+            currentImageIndex = Array.from(images).findIndex(img => img.src === imgSrc);
             document.getElementById("lightbox-img").src = imgSrc;
             document.getElementById("lightbox-container").style.display = "block";
         }
@@ -81,13 +100,25 @@
         function closeLightbox() {
             document.getElementById("lightbox-container").style.display = "none";
         }
+
+        function navigateLightbox(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = images.length - 1;
+            } else if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            }
+            document.getElementById("lightbox-img").src = images[currentImageIndex].src;
+        }
     </script>
-    
     
     <section id="video">
          <h2>Video</h2>
         <div class="video-container">
-            <iframe width="560" height="315" src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting_video.mp4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <video width="560" height="315" controls>
+                <source src="C:\Users\1rosa\OneDrive\Documents\GitHub\One-Page-Website\Images\Casting_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </section>
     <section id="contact">
@@ -103,7 +134,6 @@
         </form>
     </section>
     <footer>
-	
         <p>&copy; 2024 Model Portfolio. All rights reserved.</p>
     </footer>
 </body>
