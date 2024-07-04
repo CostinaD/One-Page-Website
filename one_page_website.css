@@ -8,26 +8,8 @@ body {
 }
 
 header {
-    width: 100%;
-    height: 100px; 
-    overflow: hidden;
-    position: relative;
-}
-
-header img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-}
-
-.header-title {
-    text-shadow: 2px 2px black;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-size: 3em;
+    text-align: center;
+    padding: 10px 0;
 }
 
 nav {
@@ -54,22 +36,15 @@ section {
 }
 
 section#home {
-    background-color: rgba(230,230,250);
+    background-color: rgba(230, 230, 250, 0.8);
     text-align: center;
     padding-top: 5em;
     margin-top: 5em;
-}
-
-section h2 {
-    text-shadow: 2px 2px black;
-}
-
-section p {
-    text-shadow: 2px 2px black;
+    color: black;
 }
 
 section#portfolio {
-    background-color: rgba(230,230,250);
+    background-color: rgba(230, 230, 250, 0.8);
     text-align: center;
 }
 
@@ -81,13 +56,84 @@ section#portfolio {
 }
 
 .gallery-container img {
-    width: 300px;
+    width: 150px;
     height: auto;
     border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.gallery-container img:hover {
+    transform: scale(1.05);
+}
+
+#lightbox-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    text-align: center;
+}
+
+#lightbox-img {
+    max-width: 80%;
+    max-height: 70%;
+    margin-top: 5%;
+    border: 2px solid white;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+#close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    user-select: none;
+}
+
+#prev-btn {
+    left: 10px;
+}
+
+#next-btn {
+    right: 10px;
+}
+
+#lightbox-thumbnails {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+#lightbox-thumbnails img {
+    width: 60px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#lightbox-thumbnails img:hover {
+    transform: scale(1.1);
 }
 
 section#video {
-    background-color: rgba(230,230,250);
+    background-color: rgba(230, 230, 250, 0.8);
     text-align: center;
 }
 
@@ -98,13 +144,12 @@ section#video {
 }
 
 section#contact {
-    background-color: rgba(230,230,250);
+    background-color: rgba(230, 230, 250, 0.8);
     text-align: center;
 }
 
-
 footer {
-    background-color: rgba(230,240,250);
+    background-color: rgba(230, 240, 250, 0.8);
     color: #fff;
     text-align: center;
     padding: 1em 0;
