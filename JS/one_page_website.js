@@ -1,5 +1,3 @@
-// JS/one_page_website.js
-
 let currentImageIndex = 0;
 const images = document.querySelectorAll('.gallery-container img');
 const fullSizeImages = [
